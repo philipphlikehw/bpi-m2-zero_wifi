@@ -64,6 +64,57 @@ Then add a UART-Adapter to the Pin-Socket and connect it with the PCB. The defau
 ![WH board setup](IMG_20230825_225620.jpg)
 
 
+## Prepare SD-Card
+After building is compleate suseccfull, the sd-card image is located in 'output/images/sdcard.img'. Write this image to a sdcard, using convential tools. For example 'Win 32 Disk Imager'
+Plug the written SD-Card into the board and power the board by USB.
+To default TTY is configured to the UART on the Headers. So connect a UART-Adapter and start the communication with 115200 baut.
+
+## Booting and Login'
+Some seconds later, a login promt shall be visible. Login-user is 'root'. A password is not needed.
+
+## Load Driver
+Load the driver by 'modprobe' command. The loading can be automated to put it init init-script. 
+```
+# modprobe brcmfmac
+# [   67.333595] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac43430-sdio for chip BCM43430/1
+[   67.513865] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac43430-sdio for chip BCM43430/1
+[   67.530610] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM43430/1 wl0: Mar 30 2021 01:12:21 version 7.45.98.118 (7d96287 CY) FWID 01-32059766
+```
+
+## Connect to WiFi Acces Point
+```
+yourSSID=""
+yourpsk=""
+rm /etc/wpa_supplicant.conf
+touch /etc/wpa_supplicant.conf
+echo 'update_config=1'>>/etc/wpa_supplicant.conf
+echo 'network={'>>/etc/wpa_supplicant.conf
+echo 'ssid="'$yourSSID'"'>>/etc/wpa_supplicant.conf
+echo 'psk="'$yourpsk'"'>>/etc/wpa_supplicant.conf
+echo 'key_mgmt=WPA-PSK'>>/etc/wpa_supplicant.conf
+echo '}'>>/etc/wpa_supplicant.conf
+
+# wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf &
+# Successfully initialized wpa_supplicant
+rfkill: Cannot open RFKILL control device
+wlan0: Trying to associate with SSID '....
+wlan0: Associated with 38:10:d5:ce:50:53
+wlan0: CTRL-EVENT-CONNECTED - Connection to 38:10:d5:ce:50:53 completed [id=0 id_str=]
+wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+
+# ifconfig wlan0 192.168.178.111 up
+# ping 192.168.178.1
+PING 192.168.178.1 (192.168.178.1): 56 data bytes
+64 bytes from 192.168.178.1: seq=0 ttl=64 time=19.045 ms
+64 bytes from 192.168.178.1: seq=1 ttl=64 time=4.680 ms
+64 bytes from 192.168.178.1: seq=2 ttl=64 time=4.684 ms
+64 bytes from 192.168.178.1: seq=3 ttl=64 time=5.337 ms
+
+
+
+
+```
+
 
 
 
