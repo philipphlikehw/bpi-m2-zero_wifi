@@ -35,5 +35,10 @@ make bananapi_m2_zero_defconfig
 #make adaptaions in menuconfig from above
 ```
 
+```
+https://github.com/philipphlikehw/bpi-m2-zero_wifi/tree/68f27586f89e8fe4c0a939edaea8d48939d6f3c8/custom
+
+```
+
 
 
