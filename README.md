@@ -113,6 +113,20 @@ PING 192.168.178.1 (192.168.178.1): 56 data bytes
 
 ```
 
+## Auto Connect
+Once you created the file '/etc/wpa_supplicant.conf' and tested our wifi-connection, you can automate the driver-loading, connecting, and ip-assigning by a simply entry in the file '/etc/network/interfaces'
+Yust add the following content into the file:
+```
+auto wlan0
+iface wlan0 inet dhcp
+        hostname BPI
+        pre-up modprobe brcmfmac && while [ ! -e /sys/class/net/wlan0 ]; do sleep 1 && echo " ."; done && wpa_supplicant -D nl80211 -i wlan0 -c /etc/wpa_supplicant.conf -B
+        post-down killall -q wpa_supplicant
+        *wait-delay 15*
+
+#
+```
+
 ## Limitation
 The BPI Board does not detect a WiFi-Access-Poitn at every Channel. If you have the issue with that you ssid is not detected, disable auto-channel in your router and set is to Channel 1.
 
