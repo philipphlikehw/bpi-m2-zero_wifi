@@ -27,6 +27,7 @@ Now, there needs be be some modification in defconfig to enable WIFI support. Yo
 
 Additional drivers in ther kernel needs to activated in ther kernel dev-config. The siplest way is, to use a kernel fragment file.
 * Kernel -> Linux Kernel -> Additional configuration fragment file                                         BR2_LINUX_KERNEL_CONFIG_FILES
+to the value `custom/kernel-config-frag`
 
 
 ```
