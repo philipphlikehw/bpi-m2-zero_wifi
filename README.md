@@ -48,7 +48,7 @@ echo echo 'CONFIG_NET_VENDOR_ALLWINNER=y'>>custum/kernel-config-frag
 echo echo 'CONFIG_WLAN=y'>>custum/kernel-config-frag
 echo echo 'CONFIG_WLAN_VENDOR_BROADCOM=y'>>custum/kernel-config-frag
 ```
-Alternativly, you can clone this git.
+Alternativly, you can just clone this git
 ```
 git clone https://github.com/philipphlikehw/bpi-m2-zero_wifi.git
 mv bpi-m2-zero_wifi/* .
