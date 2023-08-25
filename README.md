@@ -21,11 +21,12 @@ cd $BRrelease
 
 ##Configure
 Now, there needs be be some modification in defconfig to enable WIFI support. You can do this by editiong the .conf file, or by 'make menuconfig'. The following configurations needs to be set:
-Target packages -> Hardware -> Firmware:                                   BR2_PACKAGE_LINUX_FRMWARE
-Target packages -> Hardware -> Firmware->linux-firmware-WiFi firmware:     BR2_PACKAGE_LINUX_FRMWARE_BRCM_BCM43XXX
+*Target packages -> Hardware -> Firmware:                                                                 BR2_PACKAGE_LINUX_FRMWARE
+*Target packages -> Hardware -> Firmware->linux-firmware -> WiFi-firmware -> Braodcome BRCM bcm43xxx:     BR2_PACKAGE_LINUX_FRMWARE_BRCM_BCM43XXX
+*Target packages -> Networking application->wpa_supplicant:                                               BR2_PACKAGE_WPA_SUPPLICANT
 
 ```
- make bananapi_m2_zero_defconfig
+make bananapi_m2_zero_defconfig
 #make adaptaions in menuconfig
 ```
 
