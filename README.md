@@ -82,17 +82,18 @@ Load the driver by 'modprobe' command. The loading can be automated to put it in
 ```
 
 ## Connect to WiFi Acces Point
+In the last step, you yust have to create a fille witth your WiFi-Access and set an ip. Then you are 
 ```
-yourSSID=""
-yourpsk=""
-rm /etc/wpa_supplicant.conf
-touch /etc/wpa_supplicant.conf
-echo 'update_config=1'>>/etc/wpa_supplicant.conf
-echo 'network={'>>/etc/wpa_supplicant.conf
-echo 'ssid="'$yourSSID'"'>>/etc/wpa_supplicant.conf
-echo 'psk="'$yourpsk'"'>>/etc/wpa_supplicant.conf
-echo 'key_mgmt=WPA-PSK'>>/etc/wpa_supplicant.conf
-echo '}'>>/etc/wpa_supplicant.conf
+# yourSSID=""
+# yourpsk=""
+# rm /etc/wpa_supplicant.conf
+# touch /etc/wpa_supplicant.conf
+# echo 'update_config=1'>>/etc/wpa_supplicant.conf
+# echo 'network={'>>/etc/wpa_supplicant.conf
+# echo 'ssid="'$yourSSID'"'>>/etc/wpa_supplicant.conf
+# echo 'psk="'$yourpsk'"'>>/etc/wpa_supplicant.conf
+# echo 'key_mgmt=WPA-PSK'>>/etc/wpa_supplicant.conf
+# echo '}'>>/etc/wpa_supplicant.conf
 
 # wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf &
 # Successfully initialized wpa_supplicant
@@ -110,10 +111,10 @@ PING 192.168.178.1 (192.168.178.1): 56 data bytes
 64 bytes from 192.168.178.1: seq=2 ttl=64 time=4.684 ms
 64 bytes from 192.168.178.1: seq=3 ttl=64 time=5.337 ms
 
-
-
-
 ```
+
+## Limitation
+The BPI Board does not detect a WiFi-Access-Poitn at every Channel. If you have the issue with that you ssid is not detected, disable auto-channel in your router and set is to Channel 1.
 
 
 
