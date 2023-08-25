@@ -33,10 +33,26 @@ to the value `custom/kernel-config-frag`
 ```
 make bananapi_m2_zero_defconfig
 #make adaptaions in menuconfig from above
+mkdir custom
+touch custom/kernel-config-frag
+echo echo 'CONFIG_DEBUG_FS=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_NET=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_FW_LOADER=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_CRYPTO_SHA256=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_BRCMFMAC=m'>>custum/kernel-config-frag
+echo echo 'CONFIG_BRCMFMAC_SDIO=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_NETDEVICES=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_ETHERNET=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_NET_VENDOR_ALACRITECH=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_NET_VENDOR_ALLWINNER=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_WLAN=y'>>custum/kernel-config-frag
+echo echo 'CONFIG_WLAN_VENDOR_BROADCOM=y'>>custum/kernel-config-frag
 ```
-
+Alternativly, you can clone this git.
 ```
-https://github.com/philipphlikehw/bpi-m2-zero_wifi/tree/68f27586f89e8fe4c0a939edaea8d48939d6f3c8/custom
+git clone https://github.com/philipphlikehw/bpi-m2-zero_wifi.git
+mv bpi-m2-zero_wifi/* .
+rm bpi-m2-zero_wifi
 
 ```
 
