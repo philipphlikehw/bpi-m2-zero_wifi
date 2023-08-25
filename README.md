@@ -19,7 +19,7 @@ tar -xvf $BRrelease.tar.gz
 cd $BRrelease
 ```
 
-## Configure
+## Configure and building
 Now, there needs be be some modification in defconfig to enable WIFI support. You can do this by editiong the .conf file, or by 'make menuconfig'. The following configurations needs to be set:
 * Target packages -> Hardware -> Firmware:                                                                 BR2_PACKAGE_LINUX_FRMWARE
 * Target packages -> Hardware -> Firmware->linux-firmware -> WiFi-firmware -> Braodcome BRCM bcm43xxx:     BR2_PACKAGE_LINUX_FRMWARE_BRCM_BCM43XXX
@@ -47,14 +47,23 @@ echo echo 'CONFIG_NET_VENDOR_ALACRITECH=y'>>custum/kernel-config-frag
 echo echo 'CONFIG_NET_VENDOR_ALLWINNER=y'>>custum/kernel-config-frag
 echo echo 'CONFIG_WLAN=y'>>custum/kernel-config-frag
 echo echo 'CONFIG_WLAN_VENDOR_BROADCOM=y'>>custum/kernel-config-frag
+make
 ```
 Alternativly, you can just clone this git
 ```
 git clone https://github.com/philipphlikehw/bpi-m2-zero_wifi.git
 mv bpi-m2-zero_wifi/* .
 rm bpi-m2-zero_wifi
-
+make
 ```
+
+## Preparing HW
+After you start build process, you have some time to prepare HW. Therefore put a WIFI-Antenna on the WiFI-Antenna-Socket. I use the following part:[ebay link](https://www.ebay.de/itm/305052000140?hash=item4706841f8c:g:xX0AAOSwM-hdSpvg&amdata=enc%3AAQAIAAAA4Ec%2FoE4B3RXrgIDFDxCZV5NDmSckyCaFuZGAIDFQqk%2BLtvF%2BVzHLoP0conzRzSrv9GNmoWvbqaPizwiJHNe5%2BYlx3PBCmkyXMzf3xtmul%2Bt0Uao%2FRkQMDM%2BKWd2orluRx2yzmqNYTBVb3Ks5odGbMOZu6xYk5aJGSJx3cPFPMENZioKql4yoynxfEh6q7HhnqGS%2BfMOeZmX%2BTVE0eVb8QGcQUzDWa0jAOezYSZsqsfWr9jc2xzgJfK%2FlneySI%2BbYiH8QM1LquLpSrNWY0lQsZz4qg2BWjBDYitRaoXqloTeF%7Ctkp%3ABk9SR4rkwOfFYg)
+Then add a UART-Adapter to the Pin-Socket and connect it with the PCB. The default bautrate is adapted to 115200 baut.
+
+
+
+
 
 
 
