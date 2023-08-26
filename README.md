@@ -3,14 +3,14 @@ This guide outlines the steps to enable Wi-Fi on a Banana Pi M2-Zero board using
 
 ## Precondition
 You'll need a capable Linux distribution. I'm using Ubuntu 22.04 through Windows Subsystem for Linux. Install the necessary packages to prepare your system:
-```shell script
+```console
 apt install -y git tar bzip2 make file gcc libncurses5-dev libncursesw5-Ydev cpio unzip rsync bc g++
 # Additional tools might be required depending on your Linux distribution
 ```
 
 ## Fetching
 Once your system is prepared, you can fetch and build Buildroot as a regular user (not as root). I'm using version 2023-08. If you wish to use a different release, adjust the initial lines accordingly:
-```bach
+```console
 cd ~    # Navigate to the home directory or any other directory of your choice
 BRrelease=buildroot-2023.08-rc1
 wget -c -N https://www.buildroot.org/downloads/$BRrelease.tar.gz
