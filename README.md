@@ -114,7 +114,7 @@ PING 192.168.178.1 (192.168.178.1): 56 data bytes
 ## Auto Connect to a Wifi Access Point
 Once you created the file '/etc/wpa_supplicant.conf' and tested our wifi-connection, you can automate the driver-loading, connecting, and ip-assigning by a simply entry in the file '/etc/network/interfaces'
 Yust add the following content into the file:
-```console
+```text
 auto wlan0
 iface wlan0 inet dhcp
         hostname BPI
