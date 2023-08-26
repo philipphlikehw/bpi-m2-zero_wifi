@@ -21,12 +21,12 @@ cd $BRrelease
 ## Configuration and Compilation
 To enable Wi-Fi support, some modifications are needed in the configuration. You can do this either by editing the .config file directly or using the make menuconfig command. The following configurations need to be set:
 
-Target packages -> Hardware -> Firmware: BR2_PACKAGE_LINUX_FIRMWARE
-Target packages -> Hardware -> Firmware->linux-firmware -> WiFi-firmware -> Broadcom BRCM bcm43xxx: BR2_PACKAGE_LINUX_FIRMWARE_BRCM_BCM43XXX
-Target packages -> Networking applications -> wpa_supplicant: BR2_PACKAGE_WPA_SUPPLICANT
+* Target packages -> Hardware -> Firmware: BR2_PACKAGE_LINUX_FIRMWARE
+* Target packages -> Hardware -> Firmware->linux-firmware -> WiFi-firmware -> Broadcom BRCM bcm43xxx: BR2_PACKAGE_LINUX_FIRMWARE_BRCM_BCM43XXX
+* Target packages -> Networking applications -> wpa_supplicant: BR2_PACKAGE_WPA_SUPPLICANT
 Additional drivers in the kernel need to be activated in the kernel dev configuration. The simplest way is to use a kernel fragment file:
 
-Kernel -> Linux Kernel -> Additional configuration fragment file BR2_LINUX_KERNEL_CONFIG_FILES
+* Kernel -> Linux Kernel -> Additional configuration fragment file BR2_LINUX_KERNEL_CONFIG_FILES
 set to the value 'custom/kernel-config-frag'
 
 
@@ -48,7 +48,7 @@ echo 'CONFIG_NET_VENDOR_ALLWINNER=y'>>custom/kernel-config-frag
 echo 'CONFIG_WLAN=y'>>custom/kernel-config-frag
 echo 'CONFIG_WLAN_VENDOR_BROADCOM=y'>>custom/kernel-config-frag
 make
-```console
+```
 Alternatively, you can clone this Git repository:
 ```console
 git clone https://github.com/philipphlikehw/bpi-m2-zero_wifi.git
@@ -74,32 +74,34 @@ This guide outlines the steps to enable Wi-Fi on a Banana Pi M2-Zero board using
 Prerequisites
 You'll need a capable Linux distribution. I'm using Ubuntu 22.04 through Windows Subsystem for Linux. Install the necessary packages to prepare your system:
 
-bash
-Copy code
+```console
 sudo apt install -y git tar bzip2 make file gcc libncurses5-dev libncursesw5-dev cpio unzip rsync bc g++
 # Additional tools might be required depending on your Linux distribution
+```
+
 Obtaining the Sources
 Once your system is prepared, you can fetch and build Buildroot as a regular user (not as root). I'm using version 2023-08. If you wish to use a different release, adjust the initial lines accordingly:
 
-bash
-Copy code
+```console
 cd ~    # Navigate to the home directory or any other directory of your choice
 BRrelease=buildroot-2023.08-rc1
 wget -c -N https://www.buildroot.org/downloads/$BRrelease.tar.gz
 tar -xvf $BRrelease.tar.gz
 cd $BRrelease
-Configuration and Compilation
+```
+
+## Configuration and Compilation
 To enable Wi-Fi support, some modifications are needed in the configuration. You can do this either by editing the .config file directly or using the make menuconfig command. The following configurations need to be set:
 
-Target packages -> Hardware -> Firmware: BR2_PACKAGE_LINUX_FIRMWARE
-Target packages -> Hardware -> Firmware->linux-firmware -> WiFi-firmware -> Broadcom BRCM bcm43xxx: BR2_PACKAGE_LINUX_FIRMWARE_BRCM_BCM43XXX
-Target packages -> Networking applications -> wpa_supplicant: BR2_PACKAGE_WPA_SUPPLICANT
+* Target packages -> Hardware -> Firmware: BR2_PACKAGE_LINUX_FIRMWARE
+* Target packages -> Hardware -> Firmware->linux-firmware -> WiFi-firmware -> Broadcom BRCM bcm43xxx: R2_PACKAGE_LINUX_FIRMWARE_BRCM_BCM43XXX
+* Target packages -> Networking applications -> wpa_supplicant: BR2_PACKAGE_WPA_SUPPLICANT
+
 Additional drivers in the kernel need to be activated in the kernel dev configuration. The simplest way is to use a kernel fragment file:
 
-Kernel -> Linux Kernel -> Additional configuration fragment file BR2_LINUX_KERNEL_CONFIG_FILES
+* Kernel -> Linux Kernel -> Additional configuration fragment file BR2_LINUX_KERNEL_CONFIG_FILES
 set to the value custom/kernel-config-frag
-bash
-Copy code
+```console
 make bananapi_m2_zero_defconfig
 # Make adaptations in menuconfig as described above
 mkdir custom
@@ -117,15 +119,17 @@ echo 'CONFIG_NET_VENDOR_ALLWINNER=y'>>custom/kernel-config-frag
 echo 'CONFIG_WLAN=y'>>custom/kernel-config-frag
 echo 'CONFIG_WLAN_VENDOR_BROADCOM=y'>>custom/kernel-config-frag
 make
+```
 Alternatively, you can clone this Git repository:
 
-bash
-Copy code
+```console
 git clone https://github.com/philipphlikehw/bpi-m2-zero_wifi.git
 mv bpi-m2-zero_wifi/* .
 rm -r bpi-m2-zero_wifi
 make
-Preparing the Hardware
+```
+
+## Preparing the Hardware
 While the compilation is in progress, you have time to prepare the hardware. Attach a Wi-Fi antenna to the corresponding socket. I'm using the following part: ebay link
 Additionally, connect a UART adapter to the pin socket and connect it to the PCB. The default baud rate is set to 115200.
 
